@@ -19,6 +19,7 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     kinematics.h \
-    trajectory.h
+    trajectory.h \
+    typedefs.h
 
 FORMS    += mainwindow.ui

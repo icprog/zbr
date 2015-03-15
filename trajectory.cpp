@@ -22,3 +22,13 @@ Trajectory::~Trajectory()
 QList<point3D>* Trajectory::getTrajectory(){
     return trajectory;
 }
+
+point3D Trajectory::getTrajectoryPoint(int index)
+{
+    return trajectory->at(index);
+}
+
+int Trajectory::getTrajectoryLength()
+{
+    return trajectory->length();
+}

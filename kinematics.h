@@ -1,47 +1,14 @@
 #ifndef KINEMATICS_H
 #define KINEMATICS_H
+#include "typedefs.h"
 #include "trajectory.h"
 #include "qmath.h"
+#include <QObject>
 
-struct approachVector
-{
-    double theta;
-    double psi;
-};
-struct machineCoordinates
-{
-    double fi1;
-    double fi2;
-    double fi3;
-    double fi4;
-    double fi5;
-};
 
-struct robotParamsRegional
+class Kinematics : public QObject
 {
-    double l1;
-    double l2;
-    double l3;
-    double d;
-    double e;
-};
-
-struct robotParamsLocal
-{
-    double l4;
-    double l5;
-    double l6;
-};
-
-struct Deltas
-{
-    int d1;
-    int d2;
-    int d5;
-};
-
-class Kinematics
-{
+    Q_OBJECT
 public:
     Kinematics();
     Kinematics(robotParamsLocal local, robotParamsRegional regional, Deltas deltas, approachVector vector);
@@ -52,11 +19,16 @@ public:
     void setDeltas(Deltas deltas);
     void setApproachVector(approachVector vector);
 
-    machineCoordinates getMachineCoordinates();
+    void setTrajectory(Trajectory* t);
+
+    QList<machineCoordinates>* getMachineCoordinates();
 
 
 
 private:
+    /*** Trajectory ***/
+    Trajectory *trajectory;
+
     /*** robot parameters ***/
     double l1, l2, l3, d, e;
 
@@ -65,27 +37,30 @@ private:
     int delta1, delta2, delta5;
 
     approachVector aV;
-    machineCoordinates mC;
 
-    /*** TCP coordinates ***/
-    point3D t;
+    QList<machineCoordinates>* resultCoordinates;
+
+
 
     /*** helper variables ***/
-
+    machineCoordinates mC;
+    point3D t;
     point3D p;
     point3D r;
 
-   double S1, C1, S2, C2, S3, C3, S4, C4, S5, C5, S234, C234, S23, C23;
-   double CPsi, SPsi, CTheta, STheta;
-   double fi23, fi234;
-   double a,b,l;
+    double S1, C1, S2, C2, S3, C3, S4, C4, S5, C5, S234, C234, S23, C23;
+    double CPsi, SPsi, CTheta, STheta;
+    double fi23, fi234;
+    double a,b,l;
 
     void solve();
     void calcPoint_P();
     void calcPoint_R();
+    bool checkAngle(double S, double C);
     double getFi(double S, double C);
 
-
+signals:
+    void wrongTCP();
 
 };
 

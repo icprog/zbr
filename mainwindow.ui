@@ -221,7 +221,7 @@
    <widget class="QPushButton" name="updateButton">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>120</x>
       <y>520</y>
       <width>75</width>
       <height>23</height>
@@ -559,6 +559,19 @@
       <width>391</width>
       <height>181</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="calcTrajectoryButton">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>520</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Ustal trajektorię</string>
     </property>
    </widget>
   </widget>

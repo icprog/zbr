@@ -51,6 +51,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     /* update kinematics with default values */
     updateKinematics();
+    trajectoryPointNumber = ui->trajectoryPtsLineEdit->text().toInt();
+    updateTrajectory();
+
 }
 
 MainWindow::~MainWindow()
@@ -93,9 +96,40 @@ void MainWindow::updateKinematics()
     kinematics.setRobotParamsRegional(rPRegional);
 }
 
+void MainWindow::updateTrajectory()
+{
+    updateStartTCP();
+    updateEndTCP();
+    if(trajectory != NULL)
+    {
+        delete trajectory;
+    }
+    trajectory = new Trajectory(tcpStart,tcpEnd,trajectoryPointNumber);
+    kinematics.setTrajectory(trajectory);
+
+}
+
+void MainWindow::updateStartTCP()
+{
+    tcpStart.x = ui->xpLineEdit->text().toInt();
+    tcpStart.y = ui->ypLineEdit->text().toInt();
+    tcpStart.z = ui->zpLineEdit->text().toInt();
+}
+
+void MainWindow::updateEndTCP()
+{
+    tcpEnd.x = ui->xkLineEdit->text().toInt();
+    tcpEnd.y = ui->ykLineEdit->text().toInt();
+    tcpEnd.z = ui->zkLineEdit->text().toInt();
+}
+
 void MainWindow::on_updateButton_clicked()
 {
     updateKinematics();
 }
 
+void MainWindow::on_calcTrajectoryButton_clicked()
+{
+    updateTrajectory();
+}
 

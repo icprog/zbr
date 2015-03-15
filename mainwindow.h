@@ -18,19 +18,29 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
     Kinematics kinematics;
+    Trajectory *trajectory;
+
     approachVector aV;
     machineCoordinates mC;
     robotParamsRegional rPRegional;
     robotParamsLocal rPLocal;
     Deltas deltas;
 
+    point3D tcpStart, tcpEnd;
+    int trajectoryPointNumber;
+
     void updateKinematics();
+    void updateTrajectory();
+    void updateStartTCP();
+    void updateEndTCP();
     double radToDeg(double rad);
     double degToRad(double deg);
 
 private slots:
     void on_updateButton_clicked();
+    void on_calcTrajectoryButton_clicked();
 
 };
 
