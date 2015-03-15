@@ -12,7 +12,7 @@ struct point3D
 class Trajectory
 {
 public:
-    Trajectory::Trajectory(point3D start, point3D end, int pointsNumber);
+    Trajectory(point3D start, point3D end, int pointsNumber);
     ~Trajectory();
     QList<point3D>* getTrajectory();
 

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>527</width>
-    <height>331</height>
+    <width>1053</width>
+    <height>572</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>90</y>
+      <x>40</x>
+      <y>370</y>
       <width>72</width>
       <height>136</height>
      </rect>
@@ -34,7 +34,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="l1LineEdit"/>
+        <widget class="QLineEdit" name="l1LineEdit">
+         <property name="text">
+          <string>1000</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -48,7 +52,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="l2LineEdit"/>
+        <widget class="QLineEdit" name="l2LineEdit">
+         <property name="text">
+          <string>500</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -62,7 +70,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="l3LlineEdit"/>
+        <widget class="QLineEdit" name="l3LineEdit">
+         <property name="text">
+          <string>1000</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -76,7 +88,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="dLlineEdit"/>
+        <widget class="QLineEdit" name="dLineEdit">
+         <property name="text">
+          <string>100</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -90,7 +106,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="eLlineEdit"/>
+        <widget class="QLineEdit" name="eLineEdit">
+         <property name="text">
+          <string>50</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -99,8 +119,8 @@
    <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>90</y>
+      <x>130</x>
+      <y>370</y>
       <width>72</width>
       <height>136</height>
      </rect>
@@ -116,7 +136,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="l4LlineEdit"/>
+        <widget class="QLineEdit" name="l4LineEdit">
+         <property name="text">
+          <string>100</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -130,7 +154,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="l5LlineEdit"/>
+        <widget class="QLineEdit" name="l5LineEdit">
+         <property name="text">
+          <string>120</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -144,7 +172,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="l6LlineEdit"/>
+        <widget class="QLineEdit" name="l6LineEdit">
+         <property name="text">
+          <string>130</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -158,7 +190,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="thetaLlineEdit"/>
+        <widget class="QLineEdit" name="thetaLineEdit">
+         <property name="text">
+          <string>45</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -172,7 +208,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="psiLlineEdit"/>
+        <widget class="QLineEdit" name="psiLineEdit">
+         <property name="text">
+          <string>45</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -181,8 +221,8 @@
    <widget class="QPushButton" name="updateButton">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>250</y>
+      <x>260</x>
+      <y>520</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -191,17 +231,334 @@
      <string>Uaktualnij</string>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="commandLine">
+   <widget class="QWidget" name="verticalLayoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>110</y>
-      <width>256</width>
-      <height>31</height>
+      <x>220</x>
+      <y>370</y>
+      <width>78</width>
+      <height>91</height>
      </rect>
     </property>
-    <property name="acceptDrops">
-     <bool>false</bool>
+    <layout class="QVBoxLayout" name="verticalLayout_4">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_11">
+       <item>
+        <widget class="QLabel" name="label_11">
+         <property name="text">
+          <string>d1</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="d1SpinBox">
+         <property name="minimum">
+          <number>-1</number>
+         </property>
+         <property name="maximum">
+          <number>1</number>
+         </property>
+         <property name="singleStep">
+          <number>2</number>
+         </property>
+         <property name="value">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_12">
+       <item>
+        <widget class="QLabel" name="label_12">
+         <property name="text">
+          <string>d2</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="d2SpinBox">
+         <property name="minimum">
+          <number>-1</number>
+         </property>
+         <property name="maximum">
+          <number>1</number>
+         </property>
+         <property name="singleStep">
+          <number>2</number>
+         </property>
+         <property name="value">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_13">
+       <item>
+        <widget class="QLabel" name="label_13">
+         <property name="text">
+          <string>d5</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="d5SpinBox">
+         <property name="minimum">
+          <number>-1</number>
+         </property>
+         <property name="maximum">
+          <number>1</number>
+         </property>
+         <property name="singleStep">
+          <number>2</number>
+         </property>
+         <property name="value">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGraphicsView" name="XZView">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>20</y>
+      <width>301</width>
+      <height>301</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="YZView">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>20</y>
+      <width>301</width>
+      <height>301</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="XYView">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>20</y>
+      <width>301</width>
+      <height>301</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_4">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>370</y>
+      <width>78</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_5">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_14">
+       <item>
+        <widget class="QLabel" name="label_14">
+         <property name="text">
+          <string>x</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="xpLineEdit">
+         <property name="text">
+          <string>100</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_15">
+       <item>
+        <widget class="QLabel" name="label_15">
+         <property name="text">
+          <string>y</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="ypLineEdit">
+         <property name="text">
+          <string>100</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_16">
+       <item>
+        <widget class="QLabel" name="label_16">
+         <property name="text">
+          <string>z</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="zpLineEdit">
+         <property name="text">
+          <string>100</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_5">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>370</y>
+      <width>78</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_6">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_17">
+       <item>
+        <widget class="QLabel" name="label_17">
+         <property name="text">
+          <string>x</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="xkLineEdit">
+         <property name="text">
+          <string>200</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_18">
+       <item>
+        <widget class="QLabel" name="label_18">
+         <property name="text">
+          <string>y</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="ykLineEdit">
+         <property name="text">
+          <string>200</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_19">
+       <item>
+        <widget class="QLabel" name="label_19">
+         <property name="text">
+          <string>z</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="zkLineEdit">
+         <property name="text">
+          <string>200</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="label_20">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>350</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Parametry robota:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_21">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>350</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Punkt startowy:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_22">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>350</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Punkt końcowy:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="trajectoryPtsLineEdit">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>490</y>
+      <width>63</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>10</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_23">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>470</y>
+      <width>181</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Liczba punktów w interpolacji liniowej:</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="consoleTextEdit">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>370</y>
+      <width>391</width>
+      <height>181</height>
+     </rect>
     </property>
    </widget>
   </widget>

@@ -17,14 +17,42 @@ struct machineCoordinates
     double fi5;
 };
 
+struct robotParamsRegional
+{
+    double l1;
+    double l2;
+    double l3;
+    double d;
+    double e;
+};
+
+struct robotParamsLocal
+{
+    double l4;
+    double l5;
+    double l6;
+};
+
+struct Deltas
+{
+    int d1;
+    int d2;
+    int d5;
+};
+
 class Kinematics
 {
 public:
     Kinematics();
+    Kinematics(robotParamsLocal local, robotParamsRegional regional, Deltas deltas, approachVector vector);
     ~Kinematics();
 
+    void setRobotParamsLocal(robotParamsLocal local);
+    void setRobotParamsRegional(robotParamsRegional regional);
+    void setDeltas(Deltas deltas);
+    void setApproachVector(approachVector vector);
 
-
+    machineCoordinates getMachineCoordinates();
 
 
 
@@ -50,7 +78,7 @@ private:
    double S1, C1, S2, C2, S3, C3, S4, C4, S5, C5, S234, C234, S23, C23;
    double CPsi, SPsi, CTheta, STheta;
    double fi23, fi234;
-   double a,b;
+   double a,b,l;
 
     void solve();
     void calcPoint_P();

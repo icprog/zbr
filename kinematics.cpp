@@ -5,6 +5,14 @@ Kinematics::Kinematics()
 
 }
 
+Kinematics::Kinematics(robotParamsLocal local, robotParamsRegional regional, Deltas deltas, approachVector vector)
+{
+    setRobotParamsLocal(local);
+    setRobotParamsRegional(regional);
+    setDeltas(deltas);
+    setApproachVector(vector);
+}
+
 Kinematics::~Kinematics()
 {
 
@@ -12,7 +20,7 @@ Kinematics::~Kinematics()
 
 void Kinematics::solve()
 {
-    double l = l5+l6;
+    l = l5+l6;
     CPsi = cos(aV.psi);
     SPsi = sin(aV.psi);
     CTheta = cos(aV.theta);
@@ -46,7 +54,7 @@ void Kinematics::solve()
 
     S23 = (r.z - l2*S2)/l3;
     C23 = (a - l2*C2)/l3;
-    f23 = getFi(S23,C23);
+    fi23 = getFi(S23,C23);
 
     S4 = S234*C23 - C234*S23;
     C4 = C234*C23 + S234*S23;
@@ -78,4 +86,36 @@ double Kinematics::getFi(double S, double C)
     if(abs(S)<=abs(C))
         return asin(S);
     else return acos(C);
+}
+
+machineCoordinates Kinematics::getMachineCoordinates()
+{
+    return mC;
+}
+
+void Kinematics::setRobotParamsLocal(robotParamsLocal local)
+{
+    l4 = local.l4;
+    l5 = local.l5;
+    l6 = local.l6;
+}
+void Kinematics::setRobotParamsRegional(robotParamsRegional regional)
+{
+    l1 = regional.l1;
+    l2 = regional.l2;
+    l3 = regional.l3;
+    d = regional.d;
+    e = regional.e;
+}
+
+void Kinematics::setDeltas(Deltas deltas)
+{
+    delta1 = deltas.d1;
+    delta2 = deltas.d2;
+    delta5 = deltas.d5;
+}
+
+void Kinematics::setApproachVector(approachVector vector)
+{
+     aV = vector;
 }

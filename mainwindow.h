@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "kinematics.h"
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +18,20 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    Kinematics kinematics;
+    approachVector aV;
+    machineCoordinates mC;
+    robotParamsRegional rPRegional;
+    robotParamsLocal rPLocal;
+    Deltas deltas;
+
+    void updateKinematics();
+    double radToDeg(double rad);
+    double degToRad(double deg);
+
+private slots:
+    void on_updateButton_clicked();
+
 };
 
 #endif // MAINWINDOW_H
