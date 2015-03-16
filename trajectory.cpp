@@ -23,6 +23,11 @@ QList<point3D>* Trajectory::getTrajectory(){
     return trajectory;
 }
 
+void Trajectory::clearTrajectory()
+{
+    trajectory->clear();
+}
+
 point3D Trajectory::getTrajectoryPoint(int index)
 {
     return trajectory->at(index);

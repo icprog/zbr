@@ -53,10 +53,11 @@ private:
     double fi23, fi234;
     double a,b,l;
 
-    void solve();
+    bool solve();
     void calcPoint_P();
     void calcPoint_R();
     bool checkAngle(double S, double C);
+    bool checkSqrt(double value);
     double getFi(double S, double C);
 
 signals:

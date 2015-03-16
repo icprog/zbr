@@ -442,7 +442,7 @@
        <item>
         <widget class="QLineEdit" name="xkLineEdit">
          <property name="text">
-          <string>200</string>
+          <string>1500</string>
          </property>
         </widget>
        </item>
@@ -460,7 +460,7 @@
        <item>
         <widget class="QLineEdit" name="ykLineEdit">
          <property name="text">
-          <string>200</string>
+          <string>1500</string>
          </property>
         </widget>
        </item>
@@ -478,7 +478,7 @@
        <item>
         <widget class="QLineEdit" name="zkLineEdit">
          <property name="text">
-          <string>200</string>
+          <string>1500</string>
          </property>
         </widget>
        </item>

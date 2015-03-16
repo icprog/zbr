@@ -18,7 +18,9 @@ struct approachVector
 struct machineCartesianCoordinates
 {
     point3D p1;
+    point3D p1pr;
     point3D p2;
+    point3D p2pr;
     point3D p3;
     point3D p4;
     point3D p5;

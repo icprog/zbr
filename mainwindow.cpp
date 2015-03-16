@@ -8,7 +8,10 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+     trajectory = NULL;
      ui->setupUi(this);
+     wrongTrajectoryMessage = new QMessageBox(this);
+     wrongTrajectoryMessage->setInformativeText("Wybrana trajektoria jest niemożliwa do zrealizowania.");
     /* set up validators */
     QDoubleValidator* l1Validator = new QDoubleValidator(0, 10000,10,ui->l1LineEdit);
     QDoubleValidator* l2Validator = new QDoubleValidator(0, 10000,10,ui->l2LineEdit);
@@ -48,12 +51,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     /* set up signals'n'slots */
     connect(ui->updateButton, SIGNAL(clicked()), this, SLOT(on_updateButton_clicked()));
-
+    connect(ui->calcTrajectoryButton, SIGNAL(clicked()),this, SLOT(on_calcTrajectoryButton_clicked()));
+    connect(&kinematics, SIGNAL(wrongTCP()), wrongTrajectoryMessage, SLOT(exec()));
     /* update kinematics with default values */
     updateKinematics();
     trajectoryPointNumber = ui->trajectoryPtsLineEdit->text().toInt();
     updateTrajectory();
-
+    QList<machineCoordinates> *yolo = kinematics.getMachineCoordinates();
 }
 
 MainWindow::~MainWindow()
@@ -98,12 +102,13 @@ void MainWindow::updateKinematics()
 
 void MainWindow::updateTrajectory()
 {
-    updateStartTCP();
-    updateEndTCP();
-    if(trajectory != NULL)
+    if(trajectory!=NULL)
     {
         delete trajectory;
+        trajectory = NULL;
     }
+    updateStartTCP();
+    updateEndTCP();
     trajectory = new Trajectory(tcpStart,tcpEnd,trajectoryPointNumber);
     kinematics.setTrajectory(trajectory);
 

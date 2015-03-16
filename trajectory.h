@@ -10,6 +10,7 @@ public:
     Trajectory(point3D start, point3D end, int pointsNumber);
     ~Trajectory();
     QList<point3D>* getTrajectory();
+    void clearTrajectory();
     point3D getTrajectoryPoint(int index);
     int getTrajectoryLength();
 

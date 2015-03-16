@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMessageBox>
 #include "kinematics.h"
 
 namespace Ui {
@@ -30,6 +31,8 @@ private:
 
     point3D tcpStart, tcpEnd;
     int trajectoryPointNumber;
+
+    QMessageBox *wrongTrajectoryMessage;
 
     void updateKinematics();
     void updateTrajectory();
