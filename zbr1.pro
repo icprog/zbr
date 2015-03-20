@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -15,11 +15,19 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     kinematics.cpp \
-    trajectory.cpp
+    trajectory.cpp \
+    trajectorydialog.cpp \
+    qcustomplot.cpp \
+    plotterdialog.cpp
 
 HEADERS  += mainwindow.h \
     kinematics.h \
     trajectory.h \
-    typedefs.h
+    typedefs.h \
+    trajectorydialog.h \
+    qcustomplot.h \
+    plotterdialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    trajectorydialog.ui \
+    plotterdialog.ui

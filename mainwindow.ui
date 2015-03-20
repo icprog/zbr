@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1053</width>
+    <width>1000</width>
     <height>572</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Symulator robota</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QWidget" name="verticalLayoutWidget">
@@ -54,7 +54,7 @@
        <item>
         <widget class="QLineEdit" name="l2LineEdit">
          <property name="text">
-          <string>500</string>
+          <string>1200</string>
          </property>
         </widget>
        </item>
@@ -72,7 +72,7 @@
        <item>
         <widget class="QLineEdit" name="l3LineEdit">
          <property name="text">
-          <string>1000</string>
+          <string>3600</string>
          </property>
         </widget>
        </item>
@@ -90,7 +90,7 @@
        <item>
         <widget class="QLineEdit" name="dLineEdit">
          <property name="text">
-          <string>100</string>
+          <string>500</string>
          </property>
         </widget>
        </item>
@@ -108,7 +108,7 @@
        <item>
         <widget class="QLineEdit" name="eLineEdit">
          <property name="text">
-          <string>50</string>
+          <string>150</string>
          </property>
         </widget>
        </item>
@@ -138,7 +138,7 @@
        <item>
         <widget class="QLineEdit" name="l4LineEdit">
          <property name="text">
-          <string>100</string>
+          <string>200</string>
          </property>
         </widget>
        </item>
@@ -156,7 +156,7 @@
        <item>
         <widget class="QLineEdit" name="l5LineEdit">
          <property name="text">
-          <string>120</string>
+          <string>150</string>
          </property>
         </widget>
        </item>
@@ -174,7 +174,7 @@
        <item>
         <widget class="QLineEdit" name="l6LineEdit">
          <property name="text">
-          <string>130</string>
+          <string>150</string>
          </property>
         </widget>
        </item>
@@ -221,14 +221,14 @@
    <widget class="QPushButton" name="updateButton">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>30</x>
       <y>520</y>
-      <width>75</width>
+      <width>121</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>Uaktualnij</string>
+     <string>Uaktualnij kinematykę</string>
     </property>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget_3">
@@ -289,7 +289,7 @@
           <number>2</number>
          </property>
          <property name="value">
-          <number>1</number>
+          <number>-1</number>
          </property>
         </widget>
        </item>
@@ -354,138 +354,6 @@
      </rect>
     </property>
    </widget>
-   <widget class="QWidget" name="verticalLayoutWidget_4">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>370</y>
-      <width>78</width>
-      <height>91</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout_5">
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_14">
-       <item>
-        <widget class="QLabel" name="label_14">
-         <property name="text">
-          <string>x</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="xpLineEdit">
-         <property name="text">
-          <string>100</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_15">
-       <item>
-        <widget class="QLabel" name="label_15">
-         <property name="text">
-          <string>y</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="ypLineEdit">
-         <property name="text">
-          <string>100</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_16">
-       <item>
-        <widget class="QLabel" name="label_16">
-         <property name="text">
-          <string>z</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="zpLineEdit">
-         <property name="text">
-          <string>100</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="verticalLayoutWidget_5">
-    <property name="geometry">
-     <rect>
-      <x>450</x>
-      <y>370</y>
-      <width>78</width>
-      <height>91</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout_6">
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_17">
-       <item>
-        <widget class="QLabel" name="label_17">
-         <property name="text">
-          <string>x</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="xkLineEdit">
-         <property name="text">
-          <string>1500</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_18">
-       <item>
-        <widget class="QLabel" name="label_18">
-         <property name="text">
-          <string>y</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="ykLineEdit">
-         <property name="text">
-          <string>1500</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_19">
-       <item>
-        <widget class="QLabel" name="label_19">
-         <property name="text">
-          <string>z</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="zkLineEdit">
-         <property name="text">
-          <string>1500</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
-   </widget>
    <widget class="QLabel" name="label_20">
     <property name="geometry">
      <rect>
@@ -499,72 +367,10 @@
      <string>Parametry robota:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_21">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>350</y>
-      <width>91</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Punkt startowy:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_22">
-    <property name="geometry">
-     <rect>
-      <x>450</x>
-      <y>350</y>
-      <width>91</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Punkt końcowy:</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="trajectoryPtsLineEdit">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>490</y>
-      <width>63</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>10</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_23">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>470</y>
-      <width>181</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Liczba punktów w interpolacji liniowej:</string>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="consoleTextEdit">
-    <property name="geometry">
-     <rect>
-      <x>570</x>
-      <y>370</y>
-      <width>391</width>
-      <height>181</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QPushButton" name="calcTrajectoryButton">
     <property name="geometry">
      <rect>
-      <x>380</x>
+      <x>160</x>
       <y>520</y>
       <width>91</width>
       <height>23</height>
@@ -574,8 +380,33 @@
      <string>Ustal trajektorię</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="plotButton">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>520</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Wykres</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="horizontalSlider">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>350</y>
+      <width>341</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

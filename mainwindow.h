@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include "kinematics.h"
+#include "trajectorydialog.h"
+#include "plotterdialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -16,6 +18,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    static double radToDeg(double rad);
+    static double degToRad(double deg);
 
 private:
     Ui::MainWindow *ui;
@@ -32,19 +36,24 @@ private:
     point3D tcpStart, tcpEnd;
     int trajectoryPointNumber;
 
+    QList<machineCoordinates>* resultCoordinates;
+
     QMessageBox *wrongTrajectoryMessage;
+    TrajectoryDialog *trajectoryDialog;
+    PlotterDialog *plotDialog;
 
     void updateKinematics();
     void updateTrajectory();
     void updateStartTCP();
     void updateEndTCP();
-    double radToDeg(double rad);
-    double degToRad(double deg);
+
 
 private slots:
     void on_updateButton_clicked();
     void on_calcTrajectoryButton_clicked();
+    void on_trajectoryEditFinished(Trajectory* trajectory);
 
+    void on_plotButton_clicked();
 };
 
 #endif // MAINWINDOW_H

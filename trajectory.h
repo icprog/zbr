@@ -7,10 +7,13 @@
 class Trajectory
 {
 public:
-    Trajectory(point3D start, point3D end, int pointsNumber);
+    Trajectory();
     ~Trajectory();
     QList<point3D>* getTrajectory();
     void clearTrajectory();
+    void addPoint(point3D p, int pointsNumber);
+    void addBegin(point3D begin);
+    bool isEmpty();
     point3D getTrajectoryPoint(int index);
     int getTrajectoryLength();
 

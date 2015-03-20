@@ -1,8 +1,10 @@
 #include "mainwindow.h"
+
 #include "ui_mainwindow.h"
 
 #include "trajectory.h"
 #include "kinematics.h"
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -10,8 +12,11 @@ MainWindow::MainWindow(QWidget *parent) :
 {
      trajectory = NULL;
      ui->setupUi(this);
+     this->setFixedSize(size());
      wrongTrajectoryMessage = new QMessageBox(this);
      wrongTrajectoryMessage->setInformativeText("Wybrana trajektoria jest niemożliwa do zrealizowania.");
+     trajectoryDialog = new TrajectoryDialog(this);
+
     /* set up validators */
     QDoubleValidator* l1Validator = new QDoubleValidator(0, 10000,10,ui->l1LineEdit);
     QDoubleValidator* l2Validator = new QDoubleValidator(0, 10000,10,ui->l2LineEdit);
@@ -22,13 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QDoubleValidator* dValidator = new QDoubleValidator(0, 10000,10,ui->dLineEdit);
     QDoubleValidator* eValidator = new QDoubleValidator(0, 10000,10,ui->eLineEdit);
 
-    QIntValidator* xpValidator = new QIntValidator(-10000,10000,ui->xpLineEdit);
-    QIntValidator* ypValidator = new QIntValidator(-10000,10000,ui->ypLineEdit);
-    QIntValidator* zpValidator = new QIntValidator(-10000,10000,ui->zpLineEdit);
-    QIntValidator* xkValidator = new QIntValidator(-10000,10000,ui->xkLineEdit);
-    QIntValidator* ykValidator = new QIntValidator(-10000,10000,ui->ykLineEdit);
-    QIntValidator* zkValidator = new QIntValidator(-10000,10000,ui->zkLineEdit);
-    QIntValidator* trajectoryPtsValidator = new QIntValidator(0, 1000, ui->trajectoryPtsLineEdit);
+
 
 
     ui->l1LineEdit->setValidator(l1Validator);
@@ -41,23 +40,15 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->eLineEdit->setValidator(eValidator);
 
 
-    ui->xpLineEdit->setValidator(xpValidator);
-    ui->ypLineEdit->setValidator(ypValidator);
-    ui->zpLineEdit->setValidator(zpValidator);
-    ui->xkLineEdit->setValidator(xkValidator);
-    ui->ykLineEdit->setValidator(ykValidator);
-    ui->zkLineEdit->setValidator(zkValidator);
-    ui->trajectoryPtsLineEdit->setValidator(trajectoryPtsValidator);
+
 
     /* set up signals'n'slots */
     connect(ui->updateButton, SIGNAL(clicked()), this, SLOT(on_updateButton_clicked()));
     connect(ui->calcTrajectoryButton, SIGNAL(clicked()),this, SLOT(on_calcTrajectoryButton_clicked()));
     connect(&kinematics, SIGNAL(wrongTCP()), wrongTrajectoryMessage, SLOT(exec()));
+    connect(trajectoryDialog, SIGNAL(trajectoryEditFinished(Trajectory*)), this, SLOT(on_trajectoryEditFinished(Trajectory*)));
     /* update kinematics with default values */
     updateKinematics();
-    trajectoryPointNumber = ui->trajectoryPtsLineEdit->text().toInt();
-    updateTrajectory();
-    QList<machineCoordinates> *yolo = kinematics.getMachineCoordinates();
 }
 
 MainWindow::~MainWindow()
@@ -100,34 +91,6 @@ void MainWindow::updateKinematics()
     kinematics.setRobotParamsRegional(rPRegional);
 }
 
-void MainWindow::updateTrajectory()
-{
-    if(trajectory!=NULL)
-    {
-        delete trajectory;
-        trajectory = NULL;
-    }
-    updateStartTCP();
-    updateEndTCP();
-    trajectory = new Trajectory(tcpStart,tcpEnd,trajectoryPointNumber);
-    kinematics.setTrajectory(trajectory);
-
-}
-
-void MainWindow::updateStartTCP()
-{
-    tcpStart.x = ui->xpLineEdit->text().toInt();
-    tcpStart.y = ui->ypLineEdit->text().toInt();
-    tcpStart.z = ui->zpLineEdit->text().toInt();
-}
-
-void MainWindow::updateEndTCP()
-{
-    tcpEnd.x = ui->xkLineEdit->text().toInt();
-    tcpEnd.y = ui->ykLineEdit->text().toInt();
-    tcpEnd.z = ui->zkLineEdit->text().toInt();
-}
-
 void MainWindow::on_updateButton_clicked()
 {
     updateKinematics();
@@ -135,6 +98,21 @@ void MainWindow::on_updateButton_clicked()
 
 void MainWindow::on_calcTrajectoryButton_clicked()
 {
-    updateTrajectory();
+
+    trajectoryDialog->reset();
+    trajectoryDialog->show();
+
 }
 
+void MainWindow::on_trajectoryEditFinished(Trajectory *trajectory)
+{
+    kinematics.setTrajectory(trajectory);
+    resultCoordinates = kinematics.getMachineCoordinates();
+}
+
+void MainWindow::on_plotButton_clicked()
+{
+    plotDialog = new PlotterDialog(this);
+    plotDialog->setPlotData(resultCoordinates);
+    plotDialog->show();
+}

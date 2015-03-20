@@ -3,10 +3,12 @@
 Kinematics::Kinematics()
 {
     resultCoordinates = new QList<machineCoordinates>();
+    trajectory = NULL;
 }
 
 Kinematics::Kinematics(robotParamsLocal local, robotParamsRegional regional, Deltas deltas, approachVector vector)
 {
+    trajectory = NULL;
     setRobotParamsLocal(local);
     setRobotParamsRegional(regional);
     setDeltas(deltas);
@@ -17,6 +19,8 @@ Kinematics::Kinematics(robotParamsLocal local, robotParamsRegional regional, Del
 Kinematics::~Kinematics()
 {
     delete resultCoordinates;
+    if(trajectory!=NULL)
+        delete trajectory;
 }
 
 
@@ -77,7 +81,7 @@ bool Kinematics::solve()
         return false;
 
     S3 = (r.z * C2 - a * S2)/l3;
-    C3 = (a * C3 + r.z * S2 - l2)/l3;
+    C3 = (a * C2 + r.z * S2 - l2)/l3;
     if(checkAngle(S3,C3))
         mC.fi3 = getFi(S3,C3);
     else
@@ -117,6 +121,7 @@ bool Kinematics::solve()
     mC.cartesian.p3 = r;
     mC.cartesian.p4 = p;
     mC.cartesian.p5 = t;
+    return true;
 
 }
 void Kinematics::calcPoint_P()
