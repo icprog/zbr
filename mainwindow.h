@@ -42,10 +42,18 @@ private:
     TrajectoryDialog *trajectoryDialog;
     PlotterDialog *plotDialog;
 
+    QPainter *painterXY;
+    QPainter *painterYZ;
+    QPainter *painterXZ;
+
     void updateKinematics();
     void updateTrajectory();
     void updateStartTCP();
     void updateEndTCP();
+
+    void paintXY(int i);
+    void paintYZ(int i);
+    void paintXZ(int i);
 
 
 private slots:
@@ -54,6 +62,7 @@ private slots:
     void on_trajectoryEditFinished(Trajectory* trajectory);
 
     void on_plotButton_clicked();
+    void on_horizontalSlider_valueChanged(int value);
 };
 
 #endif // MAINWINDOW_H

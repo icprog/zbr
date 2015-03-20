@@ -7,6 +7,7 @@ TrajectoryDialog::TrajectoryDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setFixedSize(size());
+    this->setWindowTitle("Edycja trajektorii");
     trajectory = new Trajectory();
 
     QIntValidator* xpValidator = new QIntValidator(-10000,10000,ui->xpLineEdit);

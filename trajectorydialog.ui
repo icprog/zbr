@@ -28,6 +28,9 @@
    <property name="standardButtons">
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
+   <property name="centerButtons">
+    <bool>true</bool>
+   </property>
   </widget>
   <widget class="QLabel" name="label_22">
    <property name="geometry">
@@ -216,7 +219,7 @@
   <widget class="QPushButton" name="addPointButton">
    <property name="geometry">
     <rect>
-     <x>60</x>
+     <x>70</x>
      <y>180</y>
      <width>75</width>
      <height>23</height>

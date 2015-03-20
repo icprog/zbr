@@ -13,9 +13,14 @@ MainWindow::MainWindow(QWidget *parent) :
      trajectory = NULL;
      ui->setupUi(this);
      this->setFixedSize(size());
+     ui->plotButton->setEnabled(false);
      wrongTrajectoryMessage = new QMessageBox(this);
      wrongTrajectoryMessage->setInformativeText("Wybrana trajektoria jest niemożliwa do zrealizowania.");
      trajectoryDialog = new TrajectoryDialog(this);
+
+     painterXY = new QPainter(ui->XYView);
+     painterXZ = new QPainter(ui->XZView);
+     painterYZ = new QPainter(ui->YZView);
 
     /* set up validators */
     QDoubleValidator* l1Validator = new QDoubleValidator(0, 10000,10,ui->l1LineEdit);
@@ -53,7 +58,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    delete ui;
+    delete ui, painterXY, painterXZ, painterYZ;
 }
 
 double MainWindow::radToDeg(double rad)
@@ -91,6 +96,24 @@ void MainWindow::updateKinematics()
     kinematics.setRobotParamsRegional(rPRegional);
 }
 
+
+void MainWindow::paintXY(int i)
+{
+    if(resultCoordinates->isEmpty())
+        return;
+
+}
+
+void MainWindow::paintYZ(int i)
+{
+
+}
+
+void MainWindow::paintXZ(int i)
+{
+
+}
+
 void MainWindow::on_updateButton_clicked()
 {
     updateKinematics();
@@ -108,6 +131,7 @@ void MainWindow::on_trajectoryEditFinished(Trajectory *trajectory)
 {
     kinematics.setTrajectory(trajectory);
     resultCoordinates = kinematics.getMachineCoordinates();
+    ui->plotButton->setEnabled(true);
 }
 
 void MainWindow::on_plotButton_clicked()
@@ -115,4 +139,11 @@ void MainWindow::on_plotButton_clicked()
     plotDialog = new PlotterDialog(this);
     plotDialog->setPlotData(resultCoordinates);
     plotDialog->show();
+}
+
+void MainWindow::on_horizontalSlider_valueChanged(int value)
+{
+    paintXY(value);
+    paintYZ(value);
+    paintXZ(value);
 }

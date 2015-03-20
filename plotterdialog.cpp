@@ -7,6 +7,7 @@ PlotterDialog::PlotterDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setFixedSize(size());
+    this->setWindowTitle("Wykres współrzędnych maszynowych");
 }
 
 PlotterDialog::~PlotterDialog()
@@ -38,19 +39,25 @@ void PlotterDialog::setPlotData(QList<machineCoordinates> *coords)
     ui->plot->xAxis->setTickLabels(false);
     ui->plot->addGraph();
     ui->plot->graph(0)->setData(*time,*fi1);
-//    ui->plot->graph(0)->rescaleAxes();
+    ui->plot->graph(0)->setPen(QPen(Qt::red));
+    ui->plot->graph(0)->setName("fi 1");
     ui->plot->addGraph();
     ui->plot->graph(1)->setData(*time,*fi2);
-//    ui->plot->graph(1)->rescaleAxes();
+    ui->plot->graph(1)->setPen(QPen(Qt::blue));
+    ui->plot->graph(1)->setName("fi 2");
     ui->plot->addGraph();
     ui->plot->graph(2)->setData(*time,*fi3);
-//    ui->plot->graph(2)->rescaleAxes();
+    ui->plot->graph(2)->setPen(QPen(Qt::darkYellow));
+    ui->plot->graph(2)->setName("fi 3");
     ui->plot->addGraph();
     ui->plot->graph(3)->setData(*time,*fi4);
-//    ui->plot->graph(3)->rescaleAxes();
+    ui->plot->graph(3)->setPen(QPen(Qt::magenta));
+    ui->plot->graph(3)->setName("fi 4");
     ui->plot->addGraph();
     ui->plot->graph(4)->setData(*time,*fi5);
-//    ui->plot->graph()->rescaleAxes();
+    ui->plot->graph(4)->setPen(QPen(Qt::black));
+    ui->plot->graph(4)->setName("fi 5");
+    ui->plot->legend->setVisible(true);
     ui->plot->replot();
 
     delete fi1,fi2,fi3,fi4,fi5,time;
