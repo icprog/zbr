@@ -174,9 +174,9 @@ void MainWindow::paintXY(int i)
     painterXY->eraseRect(0,0,pixmapXY->width(), pixmapXY->height());
     painterXY->drawLine(p0,p1);
     painterXY->drawLine(p1, p1pr);
-    painterXY->drawLine(p1pr, p2);
-    painterXY->drawLine(p2, p2pr);
-    painterXY->drawLine(p2pr, p3);
+    painterXY->drawLine(p1pr, p2pr);
+    painterXY->drawLine(p2pr, p2);
+    painterXY->drawLine(p2, p3);
     painterXY->drawLine(p3, p4);
     painterXY->drawLine(p4, p5);
     ui->XYView->setPixmap(*pixmapXY);
@@ -235,9 +235,9 @@ void MainWindow::paintYZ(int i)
     painterYZ->eraseRect(0,0,pixmapYZ->width(), pixmapYZ->height());
     painterYZ->drawLine(p0,p1);
     painterYZ->drawLine(p1, p1pr);
-    painterYZ->drawLine(p1pr, p2);
-    painterYZ->drawLine(p2, p2pr);
-    painterYZ->drawLine(p2pr, p3);
+    painterYZ->drawLine(p1pr, p2pr);
+    painterYZ->drawLine(p2pr, p2);
+    painterYZ->drawLine(p2, p3);
     painterYZ->drawLine(p3, p4);
     painterYZ->drawLine(p4, p5);
     ui->YZView->setPixmap(*pixmapYZ);
@@ -294,9 +294,9 @@ void MainWindow::paintXZ(int i)
     painterXZ->eraseRect(0,0,pixmapYZ->width(), pixmapYZ->height());
     painterXZ->drawLine(p0,p1);
     painterXZ->drawLine(p1, p1pr);
-    painterXZ->drawLine(p1pr, p2);
-    painterXZ->drawLine(p2, p2pr);
-    painterXZ->drawLine(p2pr, p3);
+    painterXZ->drawLine(p1pr, p2pr);
+    painterXZ->drawLine(p2pr, p2);
+    painterXZ->drawLine(p2, p3);
     painterXZ->drawLine(p3, p4);
     painterXZ->drawLine(p4, p5);
     ui->XZView->setPixmap(*pixmapXZ);

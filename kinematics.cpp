@@ -110,8 +110,8 @@ bool Kinematics::solve()
     mC.cartesian.p1pr.y = mC.cartesian.p1.y - d*C1;
     mC.cartesian.p1pr.z = 0;
 
-    mC.cartesian.p2pr.x = mC.cartesian.p1.x + l2*C1*C2;
-    mC.cartesian.p2pr.y = mC.cartesian.p1.y + l2*S1*C2;
+    mC.cartesian.p2pr.x = mC.cartesian.p1pr.x + l2*C1*C2;
+    mC.cartesian.p2pr.y = mC.cartesian.p1pr.y + l2*S1*C2;
     mC.cartesian.p2pr.z = l2*S2;
 
     mC.cartesian.p2.x = mC.cartesian.p2pr.x - (d-e)*S1;
