@@ -45,11 +45,17 @@ private:
     QPainter *painterXY;
     QPainter *painterYZ;
     QPainter *painterXZ;
+    QPixmap *pixmapXY;
+    QPixmap *pixmapYZ;
+    QPixmap *pixmapXZ;
+
+    float factor;
 
     void updateKinematics();
     void updateTrajectory();
     void updateStartTCP();
     void updateEndTCP();
+    point3D getMaxCoords();
 
     void paintXY(int i);
     void paintYZ(int i);
