@@ -67,7 +67,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    delete ui, painterXY, painterXZ, painterYZ, pixmapXY, pixmapYZ, pixmapXZ;
+    delete ui;
+    delete painterXY;
+    delete painterXZ;
+    delete painterYZ;
+    delete pixmapXY;
+    delete pixmapYZ;
+    delete pixmapXZ;
 }
 
 double MainWindow::radToDeg(double rad)
