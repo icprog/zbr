@@ -51,6 +51,8 @@ private:
 
     float factor;
 
+    QTimer *timer;
+
     void updateKinematics();
     void updateTrajectory();
     void updateStartTCP();
@@ -66,9 +68,11 @@ private slots:
     void on_updateButton_clicked();
     void on_calcTrajectoryButton_clicked();
     void on_trajectoryEditFinished(Trajectory* trajectory);
+    void on_timer_timeout();
 
     void on_plotButton_clicked();
     void on_horizontalSlider_valueChanged(int value);
+    void on_animationButton_clicked();
 };
 
 #endif // MAINWINDOW_H

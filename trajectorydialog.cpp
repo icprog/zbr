@@ -8,6 +8,7 @@ TrajectoryDialog::TrajectoryDialog(QWidget *parent) :
     ui->setupUi(this);
     this->setFixedSize(size());
     this->setWindowTitle("Edycja trajektorii");
+    ui->buttonBox->setEnabled(false);
     trajectory = new Trajectory();
 
     QIntValidator* xpValidator = new QIntValidator(-10000,10000,ui->xpLineEdit);
@@ -37,6 +38,8 @@ void TrajectoryDialog::reset()
     ui->xpLineEdit->setEnabled(true);
     ui->ypLineEdit->setEnabled(true);
     ui->zpLineEdit->setEnabled(true);
+    ui->buttonBox->setEnabled(false);
+    ui->label_22->setText("Punkt końcowy:");
     trajectory->clearTrajectory();
 }
 
@@ -60,6 +63,8 @@ void TrajectoryDialog::on_addPointButton_clicked()
         ui->zpLineEdit->setEnabled(false);
     }
     trajectory->addPoint(end, points);
+    ui->buttonBox->setEnabled(true);
+    ui->label_22->setText("Następny punkt:");
 }
 
 void TrajectoryDialog::on_buttonBox_accepted()

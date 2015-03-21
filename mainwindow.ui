@@ -221,7 +221,7 @@
    <widget class="QPushButton" name="updateButton">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>100</x>
       <y>520</y>
       <width>121</width>
       <height>23</height>
@@ -340,10 +340,10 @@
    <widget class="QPushButton" name="calcTrajectoryButton">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>520</y>
+      <x>500</x>
+      <y>480</y>
       <width>91</width>
-      <height>23</height>
+      <height>71</height>
      </rect>
     </property>
     <property name="text">
@@ -353,10 +353,10 @@
    <widget class="QPushButton" name="plotButton">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>520</y>
-      <width>75</width>
-      <height>23</height>
+      <x>700</x>
+      <y>480</y>
+      <width>101</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="text">
@@ -366,9 +366,9 @@
    <widget class="QSlider" name="horizontalSlider">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>350</y>
-      <width>341</width>
+      <x>500</x>
+      <y>380</y>
+      <width>301</width>
       <height>22</height>
      </rect>
     </property>
@@ -381,8 +381,8 @@
      <rect>
       <x>30</x>
       <y>30</y>
-      <width>261</width>
-      <height>251</height>
+      <width>291</width>
+      <height>291</height>
      </rect>
     </property>
     <property name="text">
@@ -392,10 +392,10 @@
    <widget class="QLabel" name="XZView">
     <property name="geometry">
      <rect>
-      <x>330</x>
+      <x>350</x>
       <y>30</y>
-      <width>261</width>
-      <height>251</height>
+      <width>291</width>
+      <height>291</height>
      </rect>
     </property>
     <property name="text">
@@ -405,14 +405,95 @@
    <widget class="QLabel" name="YZView">
     <property name="geometry">
      <rect>
-      <x>660</x>
+      <x>670</x>
       <y>30</y>
-      <width>261</width>
-      <height>251</height>
+      <width>291</width>
+      <height>291</height>
      </rect>
     </property>
     <property name="text">
      <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="animationButton">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>480</y>
+      <width>91</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Animacja</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="animSpeedBox">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>430</y>
+      <width>42</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>10</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_14">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>430</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Szybkość animacji:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_15">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>10</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Płaszczyzna XY</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_16">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>10</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Płaszczyzna XZ</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_17">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>10</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Płaszczyzna YZ</string>
     </property>
    </widget>
   </widget>

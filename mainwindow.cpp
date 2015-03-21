@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
      this->setFixedSize(size());
      ui->plotButton->setEnabled(false);
      ui->horizontalSlider->setEnabled(false);
+     ui->animationButton->setEnabled(false);
      wrongTrajectoryMessage = new QMessageBox(this);
      wrongTrajectoryMessage->setInformativeText("Wybrana trajektoria jest niemożliwa do zrealizowania.");
      trajectoryDialog = new TrajectoryDialog(this);
@@ -27,7 +28,11 @@ MainWindow::MainWindow(QWidget *parent) :
      painterXY = new QPainter(pixmapXY);
      painterXZ = new QPainter(pixmapXZ);
      painterYZ = new QPainter(pixmapYZ);
+     ui->XYView->setPixmap(*pixmapXY);
+     ui->YZView->setPixmap(*pixmapYZ);
+     ui->XZView->setPixmap(*pixmapXZ);
 
+     timer = new QTimer(this);
 
 
     /* set up validators */
@@ -40,9 +45,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QDoubleValidator* dValidator = new QDoubleValidator(0, 10000,10,ui->dLineEdit);
     QDoubleValidator* eValidator = new QDoubleValidator(0, 10000,10,ui->eLineEdit);
 
-
-
-
     ui->l1LineEdit->setValidator(l1Validator);
     ui->l2LineEdit->setValidator(l2Validator);
     ui->l3LineEdit->setValidator(l3Validator);
@@ -52,15 +54,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->dLineEdit->setValidator(dValidator);
     ui->eLineEdit->setValidator(eValidator);
 
-
-
-
     /* set up signals'n'slots */
     connect(ui->updateButton, SIGNAL(clicked()), this, SLOT(on_updateButton_clicked()));
     connect(ui->calcTrajectoryButton, SIGNAL(clicked()),this, SLOT(on_calcTrajectoryButton_clicked()));
     connect(&kinematics, SIGNAL(wrongTCP()), wrongTrajectoryMessage, SLOT(exec()));
     connect(trajectoryDialog, SIGNAL(trajectoryEditFinished(Trajectory*)), this, SLOT(on_trajectoryEditFinished(Trajectory*)));
     connect(ui->horizontalSlider, SIGNAL(valueChanged(int)), this, SLOT(on_horizontalSlider_valueChanged(int)));
+    connect(timer, SIGNAL(timeout()), this, SLOT(on_timer_timeout()));
     /* update kinematics with default values */
     updateKinematics();
 }
@@ -74,12 +74,10 @@ double MainWindow::radToDeg(double rad)
 {
     return rad * (180/M_PI);
 }
-
 double MainWindow::degToRad(double deg)
 {
     return deg*M_PI/180;
 }
-
 void MainWindow::updateKinematics()
 {
     aV.psi = degToRad((ui->psiLineEdit->text()).toDouble());
@@ -104,8 +102,6 @@ void MainWindow::updateKinematics()
     kinematics.setRobotParamsLocal(rPLocal);
     kinematics.setRobotParamsRegional(rPRegional);
 }
-
-
 point3D MainWindow::getMaxCoords()
 {
     point3D max;
@@ -179,11 +175,15 @@ void MainWindow::paintXY(int i)
     painterXY->drawLine(p2, p3);
     painterXY->drawLine(p3, p4);
     painterXY->drawLine(p4, p5);
+
+    painterXY->setPen(QPen(QBrush(Qt::red), 4));
+    painterXY->drawPoint(p5);
+    painterXY->setPen(QPen(QBrush(Qt::blue), 4));
+    painterXY->drawPoint(p3);
     ui->XYView->setPixmap(*pixmapXY);
 
 
 }
-
 void MainWindow::paintYZ(int i)
 {
     if(resultCoordinates->isEmpty())
@@ -240,9 +240,14 @@ void MainWindow::paintYZ(int i)
     painterYZ->drawLine(p2, p3);
     painterYZ->drawLine(p3, p4);
     painterYZ->drawLine(p4, p5);
+    painterYZ->setPen(QPen(QBrush(Qt::red), 4));
+    painterYZ->drawPoint(p5);
+    painterYZ->setPen(QPen(QBrush(Qt::blue), 4));
+    painterYZ->drawPoint(p3);
+    painterYZ->setPen(QPen(QBrush(Qt::gray), 1));
+    painterYZ->drawLine(0,pixmapYZ->height()/2,pixmapYZ->width(),pixmapYZ->height()/2);
     ui->YZView->setPixmap(*pixmapYZ);
 }
-
 void MainWindow::paintXZ(int i)
 {
     if(resultCoordinates->isEmpty())
@@ -299,6 +304,13 @@ void MainWindow::paintXZ(int i)
     painterXZ->drawLine(p2, p3);
     painterXZ->drawLine(p3, p4);
     painterXZ->drawLine(p4, p5);
+    painterXZ->setPen(QPen(QBrush(Qt::red), 4));
+    painterXZ->drawPoint(p5);
+    painterXZ->setPen(QPen(QBrush(Qt::blue), 4));
+    painterXZ->drawPoint(p3);
+
+    painterXZ->setPen(QPen(QBrush(Qt::gray), 1));
+    painterXZ->drawLine(0,pixmapXZ->height()/2,pixmapXZ->width(),pixmapXZ->height()/2);
     ui->XZView->setPixmap(*pixmapXZ);
 }
 
@@ -311,8 +323,9 @@ void MainWindow::on_updateButton_clicked()
 
 void MainWindow::on_calcTrajectoryButton_clicked()
 {
-
+    ui->animationButton->setEnabled(false);
     ui->horizontalSlider->setEnabled(false);
+    ui->plotButton->setEnabled(false);
     trajectoryDialog->reset();
     trajectoryDialog->show();
 
@@ -322,8 +335,10 @@ void MainWindow::on_trajectoryEditFinished(Trajectory *trajectory)
 {
     kinematics.setTrajectory(trajectory);
     resultCoordinates = kinematics.getMachineCoordinates();
-    ui->plotButton->setEnabled(true);
+
     if(resultCoordinates != NULL){
+        ui->animationButton->setEnabled(true);
+        ui->plotButton->setEnabled(true);
         ui->horizontalSlider->setRange(0,resultCoordinates->size()-1);
         ui->horizontalSlider->setEnabled(true);
         point3D maxP = getMaxCoords();
@@ -348,4 +363,23 @@ void MainWindow::on_horizontalSlider_valueChanged(int value)
     paintXY(value);
     paintYZ(value);
     paintXZ(value);
+}
+
+void MainWindow::on_animationButton_clicked()
+{
+    int interval = (11-ui->animSpeedBox->value())*100;
+    timer->start(interval);
+    ui->horizontalSlider->setValue(0);
+}
+
+void MainWindow::on_timer_timeout()
+{
+    int val = ui->horizontalSlider->value();
+    if(val<resultCoordinates->size()-1)
+        ui->horizontalSlider->setValue(++val);
+    else
+    {
+        ui->horizontalSlider->setValue(0);
+        timer->stop();
+    }
 }
