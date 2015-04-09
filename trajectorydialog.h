@@ -24,7 +24,7 @@ private:
     Trajectory *trajectory;
 
 signals:
-    trajectoryEditFinished(Trajectory *trajectory);
+    void trajectoryEditFinished(Trajectory *trajectory);
 private slots:
     void on_addPointButton_clicked();
     void on_buttonBox_accepted();

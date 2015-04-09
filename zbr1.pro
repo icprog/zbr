@@ -18,7 +18,8 @@ SOURCES += main.cpp\
     trajectory.cpp \
     trajectorydialog.cpp \
     qcustomplot.cpp \
-    plotterdialog.cpp
+    plotterdialog.cpp \
+    infodialog.cpp
 
 HEADERS  += mainwindow.h \
     kinematics.h \
@@ -26,8 +27,10 @@ HEADERS  += mainwindow.h \
     typedefs.h \
     trajectorydialog.h \
     qcustomplot.h \
-    plotterdialog.h
+    plotterdialog.h \
+    infodialog.h
 
 FORMS    += mainwindow.ui \
     trajectorydialog.ui \
-    plotterdialog.ui
+    plotterdialog.ui \
+    infodialog.ui

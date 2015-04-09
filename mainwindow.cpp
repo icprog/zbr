@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
      wrongTrajectoryMessage = new QMessageBox(this);
      wrongTrajectoryMessage->setInformativeText("Wybrana trajektoria jest niemożliwa do zrealizowania.");
      trajectoryDialog = new TrajectoryDialog(this);
+     infoDialog = new InfoDialog(this);
      pixmapXY = new QPixmap(ui->XYView->size());
      pixmapYZ = new QPixmap(ui->YZView->size());
      pixmapXZ = new QPixmap(ui->XZView->size());
@@ -186,6 +187,21 @@ void MainWindow::paintXY(int i)
     painterXY->drawPoint(p5);
     painterXY->setPen(QPen(QBrush(Qt::blue), 4));
     painterXY->drawPoint(p3);
+    painterXY->setPen(QPen(QBrush(Qt::magenta), 1));
+    for(int i=0; i<trajectory->getTrajectory()->size()-1; i++)
+    {
+        QPointF a(trajectory->getTrajectory()->at(i).x,trajectory->getTrajectory()->at(i).y);
+        QPointF b(trajectory->getTrajectory()->at(i+1).x,trajectory->getTrajectory()->at(i+1).y);
+        a*=factor;
+        b*=factor;
+        a+=offset;
+        b+=offset;
+        a.setX(pixmapXY->width() - a.x());
+        a.setY(pixmapXY->height() - a.y());
+        b.setX(pixmapXY->width() - b.x());
+        b.setY(pixmapXY->height() - b.y());
+        painterXY->drawLine(a,b);
+    }
     ui->XYView->setPixmap(*pixmapXY);
 
 
@@ -252,6 +268,21 @@ void MainWindow::paintYZ(int i)
     painterYZ->drawPoint(p3);
     painterYZ->setPen(QPen(QBrush(Qt::gray), 1));
     painterYZ->drawLine(0,pixmapYZ->height()/2,pixmapYZ->width(),pixmapYZ->height()/2);
+    painterYZ->setPen(QPen(QBrush(Qt::magenta), 1));
+    for(int i=0; i<trajectory->getTrajectory()->size()-1; i++)
+    {
+        QPointF a(trajectory->getTrajectory()->at(i).y,trajectory->getTrajectory()->at(i).z);
+        QPointF b(trajectory->getTrajectory()->at(i+1).y,trajectory->getTrajectory()->at(i+1).z);
+        a*=factor;
+        b*=factor;
+        a+=offset;
+        b+=offset;
+        a.setX(pixmapXY->width() - a.x());
+        a.setY(pixmapXY->height() - a.y());
+        b.setX(pixmapXY->width() - b.x());
+        b.setY(pixmapXY->height() - b.y());
+        painterYZ->drawLine(a,b);
+    }
     ui->YZView->setPixmap(*pixmapYZ);
 }
 void MainWindow::paintXZ(int i)
@@ -317,10 +348,23 @@ void MainWindow::paintXZ(int i)
 
     painterXZ->setPen(QPen(QBrush(Qt::gray), 1));
     painterXZ->drawLine(0,pixmapXZ->height()/2,pixmapXZ->width(),pixmapXZ->height()/2);
+    painterXZ->setPen(QPen(QBrush(Qt::magenta), 1));
+    for(int i=0; i<trajectory->getTrajectory()->size()-1; i++)
+    {
+        QPointF a(trajectory->getTrajectory()->at(i).x,trajectory->getTrajectory()->at(i).z);
+        QPointF b(trajectory->getTrajectory()->at(i+1).x,trajectory->getTrajectory()->at(i+1).z);
+        a*=factor;
+        b*=factor;
+        a+=offset;
+        b+=offset;
+        a.setX(pixmapXY->width() - a.x());
+        a.setY(pixmapXY->height() - a.y());
+        b.setX(pixmapXY->width() - b.x());
+        b.setY(pixmapXY->height() - b.y());
+        painterXZ->drawLine(a,b);
+    }
     ui->XZView->setPixmap(*pixmapXZ);
 }
-
-
 
 void MainWindow::on_updateButton_clicked()
 {
@@ -339,6 +383,7 @@ void MainWindow::on_calcTrajectoryButton_clicked()
 
 void MainWindow::on_trajectoryEditFinished(Trajectory *trajectory)
 {
+    this->trajectory = trajectory;
     kinematics.setTrajectory(trajectory);
     resultCoordinates = kinematics.getMachineCoordinates();
 
@@ -388,4 +433,10 @@ void MainWindow::on_timer_timeout()
         ui->horizontalSlider->setValue(0);
         timer->stop();
     }
+}
+
+void MainWindow::on_infoButton_clicked()
+{
+
+    infoDialog->show();
 }

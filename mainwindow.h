@@ -6,6 +6,7 @@
 #include "kinematics.h"
 #include "trajectorydialog.h"
 #include "plotterdialog.h"
+#include "infodialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -41,6 +42,7 @@ private:
     QMessageBox *wrongTrajectoryMessage;
     TrajectoryDialog *trajectoryDialog;
     PlotterDialog *plotDialog;
+    InfoDialog *infoDialog;
 
     QPainter *painterXY;
     QPainter *painterYZ;
@@ -63,7 +65,6 @@ private:
     void paintYZ(int i);
     void paintXZ(int i);
 
-
 private slots:
     void on_updateButton_clicked();
     void on_calcTrajectoryButton_clicked();
@@ -73,6 +74,7 @@ private slots:
     void on_plotButton_clicked();
     void on_horizontalSlider_valueChanged(int value);
     void on_animationButton_clicked();
+    void on_infoButton_clicked();
 };
 
 #endif // MAINWINDOW_H
